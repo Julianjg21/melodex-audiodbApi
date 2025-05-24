@@ -1,22 +1,42 @@
 package com.melodex.modules.artists;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+// This entity represents an artist and maps to a database table
 @Entity
 public class Artist {
+
+    // Primary key for the Artist entity
     @Id
-   private  int idArtist;
+    private int idArtist;
+
     private String artistName;
     private int bornYear;
     private String diedYear;
     private String musicalGenre;
-    private  String biography;
+
+    // Biography can be long text, so we set column type to TEXT
+    @Column(columnDefinition = "TEXT")
+    private String biography;
+
     private String country;
 
+    // Constructor that initializes an Artist from ArtistData (record)
+    public Artist(ArtistData artistData) {
+        this.idArtist = artistData.idArtist();
+        this.artistName = artistData.artistName();
+        this.bornYear = artistData.bornYear();
+        this.diedYear = artistData.diedYear();
+        this.musicalGenre = artistData.musicalGenre();
+        this.biography = artistData.biography();
+        this.country = artistData.country();
+    }
+
+    // Default constructor required by JPA
+    public Artist() {
+    }
+
+    // Getters and Setters
     public int getIdArtist() {
         return idArtist;
     }

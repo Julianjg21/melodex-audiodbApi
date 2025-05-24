@@ -1,13 +1,18 @@
 package com.melodex.modules.artists;
 
-public class Artists {
-    ArtistData artists;
+import java.util.List;
 
-    public Artists(ArtistData artists) {
-        this.artists = artists;
+public class Artists {
+    // List to hold multiple ArtistData records
+    List<ArtistData> artists;
+
+    // Constructor that initializes the list from ArtistsData object
+    public Artists(ArtistsData artistsData) {
+        this.artists = artistsData.artists();
     }
 
-   public ArtistData getArtists() {
+    // Getter method to access the list of ArtistData
+    public List<ArtistData> getArtists() {
         return artists;
-   }
+    }
 }
