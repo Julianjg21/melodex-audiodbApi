@@ -14,7 +14,7 @@ public class ConvertData implements IConvertData {
             return mapper.readValue(json, clase);
         } catch (JsonProcessingException e) {
             // Show error if the parsing fails
-            throw new RuntimeException();
+            throw new RuntimeException("Error parsing JSON: " + e.getMessage(), e);
         }
     }
 
